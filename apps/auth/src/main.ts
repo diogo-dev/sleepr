@@ -4,9 +4,20 @@ import { Logger } from 'nestjs-pino/Logger';
 import { ValidationPipe } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import cookieParser from 'cookie-parser';
+import { Transport } from '@nestjs/microservices';
 
 async function bootstrap() {
   const app = await NestFactory.create(AuthModule);
+
+  const configService = app.get(ConfigService);
+
+  app.connectMicroservice({
+    transport: Transport.TCP,
+    options: {
+      host: '0.0.0.0',
+      port: configService.get('TCP_PORT'),
+    }
+  })
 
   app.use(cookieParser());
 
@@ -14,9 +25,8 @@ async function bootstrap() {
     whitelist: true,  
   }));
   app.useLogger(app.get(Logger));
-
-  const configService = app.get(ConfigService);
   
-  await app.listen(configService.get('PORT') || 3001);
+  await app.startAllMicroservices();
+  await app.listen(configService.get('HTTP_PORT') || 3001);
 }
 bootstrap();
