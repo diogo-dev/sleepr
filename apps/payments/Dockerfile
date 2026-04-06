@@ -1,14 +1,19 @@
 FROM node:alpine AS development
 
 WORKDIR /usr/src/app
+ENV CI=true
 
 COPY package*.json ./
 COPY pnpm-lock.yaml ./
 
 RUN npm install -g pnpm
 RUN pnpm install
+COPY tsconfig.json tsconfig.json
 
-COPY . .
+COPY apps/payments ./apps/payments
+COPY libs libs
+
+RUN cd apps/payments && pnpm install
 
 RUN pnpm run build
 

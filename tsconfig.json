@@ -28,6 +28,6 @@
       "@app/common/*": [
         "libs/common/src/*"
       ]
-    }
+    },
   }
 }

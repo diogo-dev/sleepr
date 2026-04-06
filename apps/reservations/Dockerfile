@@ -1,14 +1,19 @@
 FROM node:alpine AS development
 
 WORKDIR /usr/src/app
+ENV CI=true
 
 COPY package*.json ./
 COPY pnpm-lock.yaml ./
 
 RUN npm install -g pnpm
 RUN pnpm install
+COPY tsconfig.json tsconfig.json
 
-COPY . .
+COPY apps/reservations ./apps/reservations
+COPY libs libs
+
+RUN cd apps/reservations && pnpm install
 
 RUN pnpm run build
 

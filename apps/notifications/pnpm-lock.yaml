@@ -1,0 +1,46 @@
+lockfileVersion: '9.0'
+
+settings:
+  autoInstallPeers: true
+  excludeLinksFromLockfile: false
+
+importers:
+
+  .:
+    dependencies:
+      nodemailer:
+        specifier: ^8.0.4
+        version: 8.0.4
+    devDependencies:
+      '@types/nodemailer':
+        specifier: ^7.0.11
+        version: 7.0.11
+
+packages:
+
+  '@types/node@25.5.2':
+    resolution: {integrity: sha512-tO4ZIRKNC+MDWV4qKVZe3Ql/woTnmHDr5JD8UI5hn2pwBrHEwOEMZK7WlNb5RKB6EoJ02gwmQS9OrjuFnZYdpg==}
+
+  '@types/nodemailer@7.0.11':
+    resolution: {integrity: sha512-E+U4RzR2dKrx+u3N4DlsmLaDC6mMZOM/TPROxA0UAPiTgI0y4CEFBmZE+coGWTjakDriRsXG368lNk1u9Q0a2g==}
+
+  nodemailer@8.0.4:
+    resolution: {integrity: sha512-k+jf6N8PfQJ0Fe8ZhJlgqU5qJU44Lpvp2yvidH3vp1lPnVQMgi4yEEMPXg5eJS1gFIJTVq1NHBk7Ia9ARdSBdQ==}
+    engines: {node: '>=6.0.0'}
+
+  undici-types@7.18.2:
+    resolution: {integrity: sha512-AsuCzffGHJybSaRrmr5eHr81mwJU3kjw6M+uprWvCXiNeN9SOGwQ3Jn8jb8m3Z6izVgknn1R0FTCEAP2QrLY/w==}
+
+snapshots:
+
+  '@types/node@25.5.2':
+    dependencies:
+      undici-types: 7.18.2
+
+  '@types/nodemailer@7.0.11':
+    dependencies:
+      '@types/node': 25.5.2
+
+  nodemailer@8.0.4: {}
+
+  undici-types@7.18.2: {}
