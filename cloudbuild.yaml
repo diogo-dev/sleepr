@@ -62,3 +62,6 @@ steps:
       'push',
       'southamerica-east1-docker.pkg.dev/sleepr-492115/reservations/production',
     ]
+
+options:
+  logging: CLOUD_LOGGING_ONLY
