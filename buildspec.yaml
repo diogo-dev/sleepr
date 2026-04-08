@@ -14,7 +14,7 @@ phases:
 
       - docker build -t payments -f apps/payments/Dockerfile .
       - docker tag payments:latest 061705365347.dkr.ecr.us-east-2.amazonaws.com/sleepr/payments:latest 
-      
+
       - docker build -t notifications -f apps/notifications/Dockerfile .
       - docker tag notifications:latest 061705365347.dkr.ecr.us-east-2.amazonaws.com/sleepr/notifications:latest 
     post_build:
@@ -23,4 +23,5 @@ phases:
         - docker push 061705365347.dkr.ecr.us-east-2.amazonaws.com/sleepr/reservations:latest
         - docker push 061705365347.dkr.ecr.us-east-2.amazonaws.com/sleepr/payments:latest
         - docker push 061705365347.dkr.ecr.us-east-2.amazonaws.com/sleepr/notifications:latest
+
       
