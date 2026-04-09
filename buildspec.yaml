@@ -17,11 +17,11 @@ phases:
 
       - docker build -t sleepr/notifications -f apps/notifications/Dockerfile .
       - docker tag sleepr/notifications:latest 061705365347.dkr.ecr.us-east-2.amazonaws.com/sleepr/notifications:latest 
-    post_build:
-      commands:
-        - docker push 061705365347.dkr.ecr.us-east-2.amazonaws.com/sleepr/auth:latest
-        - docker push 061705365347.dkr.ecr.us-east-2.amazonaws.com/sleepr/reservations:latest
-        - docker push 061705365347.dkr.ecr.us-east-2.amazonaws.com/sleepr/payments:latest
-        - docker push 061705365347.dkr.ecr.us-east-2.amazonaws.com/sleepr/notifications:latest
+  post_build:
+    commands:
+      - docker push 061705365347.dkr.ecr.us-east-2.amazonaws.com/sleepr/auth:latest
+      - docker push 061705365347.dkr.ecr.us-east-2.amazonaws.com/sleepr/reservations:latest
+      - docker push 061705365347.dkr.ecr.us-east-2.amazonaws.com/sleepr/payments:latest
+      - docker push 061705365347.dkr.ecr.us-east-2.amazonaws.com/sleepr/notifications:latest
 
       
