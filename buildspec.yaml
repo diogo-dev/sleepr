@@ -6,17 +6,17 @@ phases:
       - aws ecr get-login-password --region us-east-2 | docker login --username AWS --password-stdin 061705365347.dkr.ecr.us-east-2.amazonaws.com
   build:
     commands:
-      - docker build -t auth -f apps/auth/Dockerfile .
-      - docker tag auth:latest 061705365347.dkr.ecr.us-east-2.amazonaws.com/sleepr/auth:latest 
+      - docker build -t sleepr/auth -f apps/auth/Dockerfile .
+      - docker tag sleepr/auth:latest 061705365347.dkr.ecr.us-east-2.amazonaws.com/sleepr/auth:latest 
 
-      - docker build -t reservations -f apps/reservations/Dockerfile .
-      - docker tag reservations:latest 061705365347.dkr.ecr.us-east-2.amazonaws.com/sleepr/reservations:latest 
+      - docker build -t sleepr/reservations -f apps/reservations/Dockerfile .
+      - docker tag sleepr/reservations:latest 061705365347.dkr.ecr.us-east-2.amazonaws.com/sleepr/reservations:latest 
 
-      - docker build -t payments -f apps/payments/Dockerfile .
-      - docker tag payments:latest 061705365347.dkr.ecr.us-east-2.amazonaws.com/sleepr/payments:latest 
+      - docker build -t sleepr/payments -f apps/payments/Dockerfile .
+      - docker tag sleepr/payments:latest 061705365347.dkr.ecr.us-east-2.amazonaws.com/sleepr/payments:latest 
 
-      - docker build -t notifications -f apps/notifications/Dockerfile .
-      - docker tag notifications:latest 061705365347.dkr.ecr.us-east-2.amazonaws.com/sleepr/notifications:latest 
+      - docker build -t sleepr/notifications -f apps/notifications/Dockerfile .
+      - docker tag sleepr/notifications:latest 061705365347.dkr.ecr.us-east-2.amazonaws.com/sleepr/notifications:latest 
     post_build:
       commands:
         - docker push 061705365347.dkr.ecr.us-east-2.amazonaws.com/sleepr/auth:latest
