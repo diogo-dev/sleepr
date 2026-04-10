@@ -30,6 +30,7 @@ export class AuthService {
       expires,
     });
 
+    return token;
   }
 
 }

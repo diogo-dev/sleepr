@@ -1,0 +1,18 @@
+{
+  "compilerOptions": {
+    "module": "nodenext",
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "isolatedModules": true,
+    "target": "es6",
+    "types": ["jest", "node"],
+    "noImplicitAny": true,
+    "moduleResolution": "node16",
+    "ignoreDeprecations": "6.0",
+    "sourceMap": true,
+    "outDir": "dist",
+    "rootDir": "./specs",
+    "baseUrl": "."
+  },
+  "include": ["specs/**/*"]
+}
