@@ -12,9 +12,14 @@ services:
       - "9229:9229"
     volumes:
       - .:/usr/src/app
-      - /usr/src/app/node_modules
-  mongo: 
-    image: mongo
+      - reservation_node_modules:/usr/src/app/node_modules
+  postgres: 
+    image: postgres:15
+    container_name: postgres_sleepr
+    env_file:
+      - .env
+    ports:
+      - "5433:5432"
   auth:
     build:
       context: .
@@ -27,8 +32,8 @@ services:
       - "3001:3001"
     volumes:
       - .:/usr/src/app
-      - /usr/src/app/node_modules
-      - /usr/src/app/apps/auth/node_modules
+      - auth_node_modules:/usr/src/app/node_modules
+      - auth_app_node_modules:/usr/src/app/apps/auth/node_modules
   payments:
     build:
       context: .
@@ -39,8 +44,8 @@ services:
       - ./apps/payments/.env
     volumes:
       - .:/usr/src/app
-      - /usr/src/app/node_modules
-      - /usr/src/app/apps/payments/node_modules
+      - payments_node_modules:/usr/src/app/node_modules
+      - payments_app_node_modules:/usr/src/app/apps/payments/node_modules
   notifications:
     build:
       context: .
@@ -51,7 +56,15 @@ services:
       - ./apps/notifications/.env
     volumes:
       - .:/usr/src/app
-      - /usr/src/app/node_modules
-      - /usr/src/app/apps/notifications/node_modules
-   
+      - notifications_node_modules:/usr/src/app/node_modules
+      - notifications_app_node_modules:/usr/src/app/apps/notifications/node_modules
+volumes:
+  auth_node_modules:
+  auth_app_node_modules:
+  payments_node_modules:
+  payments_app_node_modules:
+  notifications_node_modules:
+  notifications_app_node_modules:
+  reservation_node_modules:
+ 
     
