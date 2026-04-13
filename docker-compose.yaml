@@ -13,6 +13,9 @@ services:
     volumes:
       - .:/usr/src/app
       - reservation_node_modules:/usr/src/app/node_modules
+    depends_on:
+      rabbitmq:
+        condition: service_healthy
   mongo: 
     image: mongo
   auth:
@@ -29,6 +32,9 @@ services:
       - .:/usr/src/app
       - auth_node_modules:/usr/src/app/node_modules
       - auth_app_node_modules:/usr/src/app/apps/auth/node_modules
+    depends_on:
+      rabbitmq:
+        condition: service_healthy
   payments:
     build:
       context: .
@@ -41,6 +47,9 @@ services:
       - .:/usr/src/app
       - payments_node_modules:/usr/src/app/node_modules
       - payments_app_node_modules:/usr/src/app/apps/payments/node_modules
+    depends_on:
+      rabbitmq:
+        condition: service_healthy
   notifications:
     build:
       context: .
@@ -53,6 +62,19 @@ services:
       - .:/usr/src/app
       - notifications_node_modules:/usr/src/app/node_modules
       - notifications_app_node_modules:/usr/src/app/apps/notifications/node_modules
+    depends_on:
+      rabbitmq:
+        condition: service_healthy
+  rabbitmq:
+    image: rabbitmq
+    ports:
+     - "5672:5672"
+    healthcheck:
+      test: ["CMD", "rabbitmq-diagnostics", "-q", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+      start_period: 10s
 volumes:
   reservation_node_modules:
   auth_node_modules:
